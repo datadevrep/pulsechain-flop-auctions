@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# PulseChain Flop Auctions UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend interface for participating in PulseMaker (MakerDAO fork on PulseChain) flop auctions.
 
-## Available Scripts
+## About Flop Auctions
 
-In the project directory, you can run:
+Flop auctions are debt auctions used to recapitalize the PulseMaker system by auctioning off pMKR tokens for a fixed amount of pDAI. In this process, bidders compete by offering to accept decreasing amounts of pMKR for the pDAI they will pay.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Connect MetaMask or other Web3 wallets
+- View active flop auctions on PulseChain
+- Place bids on auctions
+- Deal (settle) completed auctions
+- Restart expired auctions that received no bids
+- Monitor auction countdown timers
+- Track your pDAI and pMKR balances
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technical Details
 
-### `npm test`
+This application interacts with the PulseMaker contracts deployed on PulseChain. It uses:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React for the UI
+- ethers.js for blockchain interactions
+- Web3 wallet connection
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js and npm
+- MetaMask or compatible wallet with PulseChain network added
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone this repository
+```
+git clone https://github.com/yourusername/pulsechain-flop-auctions.git
+cd pulsechain-flop-auctions
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install dependencies
+```
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Update contract addresses in `App.js`
+   - Replace placeholder addresses with actual PulseMaker contract addresses on PulseChain
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Start the development server
+```
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Open http://localhost:3000 in your browser
 
-## Learn More
+## Contract Interactions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application interacts with the following PulseMaker contracts:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Flopper**: Manages the debt auctions
+- **Vat**: Core accounting engine that tracks system state
 
-### Code Splitting
+## Auction Mechanics
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In a flop auction:
 
-### Analyzing the Bundle Size
+1. The auction starts with a fixed amount of pDAI that bidders must pay
+2. Bidders compete by offering to accept smaller and smaller amounts of pMKR
+3. Each bid must decrease the pMKR amount (lot) by at least 5% from the previous bid
+4. The winning bidder pays the fixed pDAI amount and receives the pMKR amount they bid
+5. The auction ends when the timer expires or the auction duration is reached
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Disclaimer
 
-### Making a Progressive Web App
+This is an unofficial interface for PulseMaker on PulseChain. Use at your own risk. Always verify contract addresses before interacting with them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
