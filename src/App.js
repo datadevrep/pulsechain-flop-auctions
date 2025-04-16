@@ -190,8 +190,7 @@ function App() {
       const activeAuctions = [];
 
       // Loop through auction IDs to find active ones
-      const limit = 10;
-      for (let i = 1; i <= limit; i++) {
+      for (let i = 1; i <= totalAuctions; i++) {
         console.log(`Checking auction ID ${i}...`);
 
         try {
